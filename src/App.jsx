@@ -18,6 +18,7 @@ import EditProfile from './Pages/User/EditProfile'
 import CheckOut from './Pages/Payment/CheckOut'
 import CheckOutSuccess from './Pages/Payment/CheckOutSuccess'
 import CheeckOutFailure from './Pages/Payment/CheeckOutFailure'
+import Displaylecture from './DashBoard/Displaylecture'
 const App = () => {
   return (
     <>
@@ -49,6 +50,9 @@ const App = () => {
           <Route path='/checkout/success' element={<CheckOutSuccess />} />
           <Route path='/checkout/fail' element={<CheeckOutFailure />} />
         </Route>
+
+        {/* DashBoard Pages  */}
+        <Route path='/course/dispalylecture' element={<Displaylecture />}></Route>
 
         {/* Denied Page */}
         <Route path='/denied' element={<Denied />}></Route>

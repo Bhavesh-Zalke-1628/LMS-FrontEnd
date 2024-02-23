@@ -8,10 +8,10 @@ import { getAllCourses } from '../../Redux/Slices/CourceSlice.js'
 function CourseList() {
     const dispatch = useDispatch();
 
-    const  {courseData}  = useSelector((state) => {
+    const { courseData } = useSelector((state) => {
         return state.courses
     });
-console.log(courseData)
+    console.log(courseData)
     async function loadCourses() {
         await dispatch(getAllCourses());
     }
@@ -26,7 +26,7 @@ console.log(courseData)
                 <h1 className="text-center text-3xl font-semibold mb-5">
                     Explore the courses made by
                     <span className="font-bold text-yellow-500">
-                      {" "}  Industry experts
+                        {" "}  Industry experts
                     </span>
                 </h1>
                 <div className="mb-10 flex flex-wrap gap-28 px-14">

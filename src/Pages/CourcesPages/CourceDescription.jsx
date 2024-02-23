@@ -37,8 +37,10 @@ function CourceDescription() {
                                 </p>
                             </div>
                             {
-                                role === "Admin" || data?.subscription?.status === "InActive" ? (
-                                    <button className=' bg-yellow-600 w-full text-xl rounded-md font-bold py-2 px-3 hover:bg-yellow-500 transition-all ease-in-out duration-300'>
+                                role === "Admin" || data?.subscription?.status === "created" ? (
+                                    <button
+                                        onClick={() => navigate("/course/dispalylecture", { state: { ...state } })}
+                                        className=' bg-yellow-600 w-full text-xl rounded-md font-bold py-2 px-3 hover:bg-yellow-500 transition-all ease-in-out duration-300'>
                                         Watch Lecture
                                     </button>
                                 ) : (

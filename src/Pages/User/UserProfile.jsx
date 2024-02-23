@@ -23,7 +23,6 @@ function UserProfile() {
 
     return (
         <HomeLayout>
-            {console.log(userData.subscription)}
             <div className="min-h-[90vh] flex items-center justify-center">
                 <div className="my-10 flex flex-col gap-4 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]">
                     <img
@@ -56,6 +55,7 @@ function UserProfile() {
 
                         </Link>
                     </div>
+                    {console.log(userData.subscription)}
                     {userData?.subscription?.status === "active" && (
                         <button onClick={handleCancellation} className="w-full bg-red-600 hover:bg-red-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
                             Cancel Subscription
