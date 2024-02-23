@@ -11,16 +11,19 @@ function UserProfile() {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state?.auth?.data);
     const navigate = useNavigate()
-    async function handleCacnlation() {
-        toast('initiating canceatin');
+
+    async function handleCancellation() {
+        toast("Initiating cancellation");
         await dispatch(cancelCourseBundle());
         await dispatch(getUserData());
-        toast.success('cancelation comleted');
-        navigate('/');
+        toast.success("Cancellation completed!");
+        navigate("/");
+
     }
 
     return (
         <HomeLayout>
+            {console.log(userData.subscription)}
             <div className="min-h-[90vh] flex items-center justify-center">
                 <div className="my-10 flex flex-col gap-4 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]">
                     <img
@@ -54,9 +57,7 @@ function UserProfile() {
                         </Link>
                     </div>
                     {userData?.subscription?.status === "active" && (
-                        <button
-                            onClick={handleCacnlation}
-                            className="w-full bg-red-600 hover:bg-red-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
+                        <button onClick={handleCancellation} className="w-full bg-red-600 hover:bg-red-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
                             Cancel Subscription
                         </button>
                     )}

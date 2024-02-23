@@ -33,18 +33,31 @@ export const purchaseCourseBundle = createAsyncThunk("/purchaseCourse", async ()
     }
 });
 
+// export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
+//     try {
+//         console.log('data >', data)
+//         const response = await axiosInstance.post(, {
+//             razorpay_payment_id: data.razorpay_payment_id,
+//             razorpay_subscription_id: data.razorpay_subscription_id,
+//             razorpay_signature: data.razorpay_signature
+//         });
+//         console.log('varify response', response.data)
+//         return response.data;
+//     } catch (error) {
+//         console.log(error)
+//     }
+// });
+
 export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
     try {
-        console.log('data >', data)
         const response = await axiosInstance.post('/payment/razorpay/verify', {
             razorpay_payment_id: data.razorpay_payment_id,
             razorpay_subscription_id: data.razorpay_subscription_id,
             razorpay_signature: data.razorpay_signature
         });
-        console.log('response', response.data)
         return response.data;
-    } catch (error) {
-        console.log(error)
+    } catch(error) {
+        toast.error(error?.response?.data?.message);
     }
 });
 
@@ -92,14 +105,19 @@ const razorpaySlice = createSlice({
             .addCase(purchaseCourseBundle.fulfilled, (state, action) => {
                 state.subscription_id = action?.payload?.subscription_id;
             })
-            .addCase(verifyUserPayment.fulfilled, (state, action) => {
-                console.log('action in  verifyUserPayment fulfilled >', action)
-                toast.success(action?.payload?.message);
-                state.isPaymentVerified = action?.payload?.success;
-            })
+            // .addCase(verifyUserPayment.fulfilled, (state, action) => {
+            //     console.log('action in  verifyUserPayment fulfilled >', action.payload)
+            //     toast.success(action?.payload?.message);
+            //     state.isPaymentVerified = action?.payload?.success;
+            // })
             .addCase(verifyUserPayment.rejected, (state, action) => {
                 console.log('action in  verifyUserPayment rejected >', action)
 
+                toast.success(action?.payload?.message);
+                state.isPaymentVerified = action?.payload?.success;
+            })
+
+            .addCase(verifyUserPayment.fulfilled, (state, action) => {
                 toast.success(action?.payload?.message);
                 state.isPaymentVerified = action?.payload?.success;
             })

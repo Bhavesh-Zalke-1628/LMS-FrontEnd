@@ -45,7 +45,7 @@ function Signup() {
 
     return (
         <HomeLayout>
-            <div className='flex overflow-x-auto items-center justify-center h-[100vh]'>
+            <div className='flex overflow-x-auto items-center justify-center h-[90vh]'>
                 <form noValidate onSubmit={onLogin} className='flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]'>
                     <h1 className="text-center text-2xl font-bold">Login Page</h1>
                     <div className='flex flex-col gap-1'>
