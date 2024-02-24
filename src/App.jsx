@@ -19,6 +19,7 @@ import CheckOut from './Pages/Payment/CheckOut'
 import CheckOutSuccess from './Pages/Payment/CheckOutSuccess'
 import CheeckOutFailure from './Pages/Payment/CheeckOutFailure'
 import Displaylecture from './DashBoard/Displaylecture'
+import Addlecture from './DashBoard/Addlecture'
 const App = () => {
   return (
     <>
@@ -39,6 +40,7 @@ const App = () => {
         {/* create Cource */}
         <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
+          <Route path="/course/addlecture" element={<Addlecture />} />
         </Route>
 
         {/* User Profile */}
