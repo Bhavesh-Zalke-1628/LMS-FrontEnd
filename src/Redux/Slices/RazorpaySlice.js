@@ -10,7 +10,8 @@ const initialState = {
     isPaymentVerified: false,
     allPayments: {},
     finalMonths: {},
-    monthlySalesRecord: []
+    monthlySalesRecord: [],
+    status: ""
 }
 
 export const getRazorPayId = createAsyncThunk("/razorpay/getId", async () => {
@@ -56,7 +57,7 @@ export const verifyUserPayment = createAsyncThunk("/payments/verify", async (dat
             razorpay_signature: data.razorpay_signature
         });
         return response.data;
-    } catch(error) {
+    } catch (error) {
         toast.error(error?.response?.data?.message);
     }
 });
@@ -120,6 +121,7 @@ const razorpaySlice = createSlice({
             .addCase(verifyUserPayment.fulfilled, (state, action) => {
                 toast.success(action?.payload?.message);
                 state.isPaymentVerified = action?.payload?.success;
+                state.status = action?.asubscription?.status
             })
             .addCase(getPaymentRecord.fulfilled, (state, action) => {
                 state.allPayments = action?.payload?.allPayments;

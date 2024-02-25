@@ -18,8 +18,9 @@ import EditProfile from './Pages/User/EditProfile'
 import CheckOut from './Pages/Payment/CheckOut'
 import CheckOutSuccess from './Pages/Payment/CheckOutSuccess'
 import CheeckOutFailure from './Pages/Payment/CheeckOutFailure'
-import Displaylecture from './DashBoard/Displaylecture'
-import Addlecture from './DashBoard/Addlecture'
+import Displaylectures from './Pages/DashBoard/Displaylecture'
+import Addlecture from './Pages/DashBoard/Addlecture'
+import AdminDashboard from './Pages/DashBoard/AdminDashboard'
 const App = () => {
   return (
     <>
@@ -41,6 +42,7 @@ const App = () => {
         <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
           <Route path="/course/addlecture" element={<Addlecture />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Route>
 
         {/* User Profile */}
@@ -54,7 +56,7 @@ const App = () => {
         </Route>
 
         {/* DashBoard Pages  */}
-        <Route path='/course/dispalylecture' element={<Displaylecture />}></Route>
+        <Route path='/course/dispalylecture' element={<Displaylectures />}></Route>
 
         {/* Denied Page */}
         <Route path='/denied' element={<Denied />}></Route>

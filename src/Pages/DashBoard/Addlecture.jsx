@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import HomeLayout from '../Layouts/HomeLayout'
+import HomeLayout from '../../Layouts/HomeLayout'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast';
-import { addCourseLecture } from '../Redux/Slices/LectureSlice';
+import { addCourseLecture } from '../../Redux/Slices/LectureSlice';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function Addlecture() {
@@ -13,7 +13,7 @@ function Addlecture() {
     const navigate = useNavigate()
 
     const [userInput, setUserInput] = useState({
-        id: courceDetails.id,
+        id: courceDetails?._id,
         lecture: undefined,
         title: "",
         description: "",
@@ -22,8 +22,6 @@ function Addlecture() {
 
     function handleInputChange(e) {
         const { name, value } = e.target
-        e.preventDefault()
-
         setUserInput({
             ...userInput,
             [name]: value
@@ -31,6 +29,7 @@ function Addlecture() {
     }
 
     function handleVideo(e) {
+        e.preventDefault();
         const video = e.target.files[0]
         const source = window.URL.createObjectURL(video)
         console.log(source)
@@ -43,16 +42,16 @@ function Addlecture() {
 
     async function onFormSubmit(e) {
         e.preventDefault()
-        if (!userInput.lecture || !userInput.title || !userInput.description) {
-            toast.error("All fields are required")
-            return
+        if (!userInput.title || !userInput.description || !userInput.lecture) {
+            toast.error("All fields are required");
+            return;
         }
 
         const respose = await dispatch(addCourseLecture(userInput));
 
         if (respose?.payload?.success) {
             setUserInput({
-                id: courceDetails.id,
+                id: courceDetails?._id,
                 lecture: undefined,
                 title: "",
                 description: "",
@@ -64,7 +63,7 @@ function Addlecture() {
 
     useEffect(() => {
         if (!courceDetails) {
-            navigate('//course/dispalylecture')
+            navigate('/course/dispalylecture')
         }
     }, []);
     return (
@@ -77,8 +76,8 @@ function Addlecture() {
                             onClick={() => navigate(-1)}>
                             <AiOutlineArrowLeft />
                         </button>
-                        <h1 className=' text-cl text-yellow-500  font-semibold'>
-                            Add new Flecture
+                        <h1 className=' capitalize text-xl text-yellow-500 font-semibold '>
+                            Add new lecture
                         </h1>
                     </header>
                     <form
@@ -98,10 +97,9 @@ function Addlecture() {
                             name='description'
                             placeholder='Enter the description of the lecture'
                             onChange={handleInputChange}
-                            className=' bg-transparent px-3 py-1 border rounded-lg resize-none overflow-y-scroll h-36'
+                            className=' bg-transparent px-3 py-1 border rounded-lg resize-none overflow-y-scroll h-32'
                             value={userInput.description}
                         />
-
                         {userInput.videoSrc ? (
                             < video
                                 src={userInput.videoSrc}
@@ -122,17 +120,20 @@ function Addlecture() {
                                     name='lecture'
                                     onChange={handleVideo}
                                     id='lecture'
+                                    
                                     accept='video/mp4 video/*'
                                 />
                             </div>
 
                         )}
+                        <button
+                            className=' bg-yellow-500 mt-2 py-2 capitalize hover:bg-yellow-600 transition-all ease-in-out duration-300 font-semibold text-xl rounded-md'
+                            type='submit'
+                        >
+                            add new lecture
+                        </button>
                     </form>
-                    <button
-                        className=' btn-primary py-1 font-semibold text-lg'
-                        type='submit'>
-                        Add new Lecture
-                    </button>
+
                 </div>
             </div>
         </HomeLayout >
