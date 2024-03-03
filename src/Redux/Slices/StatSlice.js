@@ -11,11 +11,11 @@ export const getStatData = createAsyncThunk('/stat/get', async () => {
     try {
         const response = await axiosInstance.get('/admin/stat/user');
         toast.promise(response, {
-            loading : "Getting the statt",
-            success : (data) =>{
+            loading: "Getting the statt",
+            success: (data) => {
                 return data?.data?.msg
             },
-            error :'Failed to load data'
+            error: 'Failed to load data'
         })
         return await response.data
     } catch (error) {
@@ -27,7 +27,13 @@ const StatSlice = createSlice({
     name: 'stat',
     initialState,
     reducers: {},
-    extraReducers: (builder) => { }
+    extraReducers: (builder) => {
+        builder
+            .addCase(getStatData.fulfilled, (state, action) =>{
+                state.allUserCount = action?.payload?.allUserCount
+                state.subscribedUser =action?.payload
+            })
+    }
 })
 
 

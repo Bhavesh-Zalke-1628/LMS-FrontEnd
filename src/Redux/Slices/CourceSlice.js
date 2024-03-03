@@ -19,7 +19,7 @@ export const getAllCourses = createAsyncThunk("/course/get", async () => {
     }
 });
 
-export const deleteCorce = createAsyncThunk("/course/delete", async () => {
+export const deleteCorce = createAsyncThunk("/course/delete", async (id) => {
     try {
         const response = axiosInstance.delete(`/cource/${id}`);
         console.log(response)

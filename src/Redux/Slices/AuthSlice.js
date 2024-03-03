@@ -6,8 +6,10 @@ import { json } from "react-router-dom";
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('data') !== undefined ? (localStorage.getItem('data')) : {}
+    data: localStorage.getItem('data') == undefined ? JSON.parse(localStorage.getItem('data')) : {}
 }
+
+
 
 export const createAccount = createAsyncThunk("/signup", async (data) => {
     try {
