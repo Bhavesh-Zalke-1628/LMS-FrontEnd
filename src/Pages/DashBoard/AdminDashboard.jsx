@@ -88,14 +88,14 @@ function AdminDashboard() {
                             <div className=' flex items-center justify-between p-5 gap-5 rounded-md shadow-md'>
                                 <div className='  flex flex-col items-center'>
                                     <p className=' font-semibold capitalize'>Register user</p>
-                                    <h3 className=' text-4xl font-bold'>{allUserCount}</h3>
+                                    <h3 className=' text-4xl font-bold'>{10}</h3>
                                 </div>
                                 <FaUsers className=' text-yellow-500 text-5xl' />
                             </div>
                             <div className=' flex items-center justify-between p-5 gap-5 rounded-md shadow-md'>
                                 <div className='  flex flex-col items-center'>
                                     <p className=' font-semibold capitalize'>subscribed user</p>
-                                    <h3 className=' text-4xl font-bold'>{subscribedUser}</h3>
+                                    <h3 className=' text-4xl font-bold'>{20}</h3>
                                 </div>
                                 <FaUsers className=' text-green-500 text-5xl' />
                             </div>
@@ -135,7 +135,7 @@ function AdminDashboard() {
                         onClick={() => {
                             navigate('/course/create')
                         }}
-                        className=' w-fit  bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded-md px-4 py-2 text-xl font-semibold cursor-pointer'
+                        className=' w-fit  bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded-md px-4 py-2 text-xl font-semibold cursor-pointer capitalize'
                     >
                         create new Course
                     </button>
