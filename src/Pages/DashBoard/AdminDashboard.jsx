@@ -42,7 +42,7 @@ function AdminDashboard() {
         datasets: [
             {
                 label: "Sales / Month",
-                data: monthlySalesRecord,
+                data: [10,20,10,5,1,2,4,5,8,42,11],
                 backgroundColor: ["red"],
                 borderColor: ["white"],
                 borderWidth: 2
@@ -69,7 +69,7 @@ function AdminDashboard() {
         (
             async () => {
                 await dispatch(getAllCourses());
-                // await dispatch(getStatData());
+                await dispatch(getStatData());
                 await dispatch(getPaymentRecord())
             }
         )()
@@ -119,7 +119,7 @@ function AdminDashboard() {
 
                             <div className=' flex items-center justify-between p-5 gap-5 rounded-md shadow-md'>
                                 <div className='  flex flex-col items-center'>
-                                    <p className=' font-semibold capitalize'>toal revenue</p>
+                                    <p className=' font-semibold capitalize'>total revenue</p>
                                     <h3 className=' text-4xl font-bold'>{10000}</h3>
                                 </div>
                                 <GiMoneyStack className=' text-green-500 text-5xl' />
@@ -129,7 +129,7 @@ function AdminDashboard() {
                 </div>
                 <div className=' m-[10px] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10'>
                     <div className='  flex w-full items-center justify-between'>
-                        <h1 className=' text-3xl text-center font-semibold capitalize'>corces overview</h1>
+                        <h1 className=' text-3xl text-center font-semibold capitalize'>courses overview</h1>
                     </div>
                     <button
                         onClick={() => {

@@ -52,7 +52,6 @@ function UserProfile() {
                                 onClick={() => {
                                     console.log(userData)
                                 }}>Edit profile</button>
-
                         </Link>
                     </div>
                     {console.log(userData.subscription)}

@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast"
 
 import axiosInstance from "../../Helpers/axiosInstance"
+import axios from "axios"
 
 const initialState = {
     key: "",
@@ -34,20 +35,6 @@ export const purchaseCourseBundle = createAsyncThunk("/purchaseCourse", async ()
     }
 });
 
-// export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
-//     try {
-//         console.log('data >', data)
-//         const response = await axiosInstance.post(, {
-//             razorpay_payment_id: data.razorpay_payment_id,
-//             razorpay_subscription_id: data.razorpay_subscription_id,
-//             razorpay_signature: data.razorpay_signature
-//         });
-//         console.log('varify response', response.data)
-//         return response.data;
-//     } catch (error) {
-//         console.log(error)
-//     }
-// });
 
 export const verifyUserPayment = createAsyncThunk("/payments/verify", async (data) => {
     try {
@@ -62,23 +49,51 @@ export const verifyUserPayment = createAsyncThunk("/payments/verify", async (dat
     }
 });
 
-export const getPaymentRecord = createAsyncThunk("/payments/record", async () => {
-    try {
-        const response = axiosInstance.get("/payment?count=10",);
-        toast.promise(response, {
-            loading: "Getting the payment records",
-            success: (data) => {
-                console.log("success data", data)
-                return data?.data?.msg
-            },
-            error: "Failed to get payment records"
-        })
-        console.log((await response).data.payments)
-        return (await response).data;
-    } catch (error) {
-        toast.error("Operation failed");
+// export const getPaymentRecord = createAsyncThunk("/payments/record", async () => {
+//     try {
+//         console.log(
+//             "Get payment record"
+//         )
+//         const response =await axios.get('http://localhost:5000/api/payment?count=100')
+//         console.log(response)
+//         toast.promise(response, {
+//             loading: "Getting the payment records",
+//             success: (data) => {
+//                 return data?.data?.msg
+//             },
+//             error: "Failed to get payment records"
+//         })
+//         console.log((await response).data.payments)
+//         return (await response).data;
+//     } catch (error) {
+//         toast.error("Operation failed");
+//     }
+// });
+
+
+
+export const getPaymentRecord = createAsyncThunk(
+    '/payments/record',
+    async () => {
+        try {
+            console.log("Get payment record");
+            const response = await axios.get('http://localhost:5000/api/payment?count=100');
+            console.log(response);
+            toast.promise(response, {
+                loading: "Getting the payment records",
+                success: (data) => {
+                    return data?.data?.msg;
+                },
+                error: "Failed to get payment records"
+            });
+            console.log(response.data.payments);
+            return response.data;
+        } catch (error) {
+            console.error("Error occurred while fetching payment records: ", error);
+            throw error; // Make sure to throw the error to properly handle it in the Redux slice or component
+        }
     }
-});
+);
 
 export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
     try {
