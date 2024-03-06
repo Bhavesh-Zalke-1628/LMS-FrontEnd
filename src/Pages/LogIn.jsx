@@ -23,7 +23,7 @@ function Signup() {
             [name]: value
         })
     }
-
+    console.log(loginData)
     async function onLogin(event) {
         event.preventDefault();
         if (!loginData.email || !loginData.password) {

@@ -5,13 +5,15 @@ import toast from "react-hot-toast";
 import axiosInstance from "../../Helpers/axiosInstance";
 
 const initialState = {
-    lectures: []
+    lectures: [],
+    Comment: ""
 }
 
 
 export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (cid) => {
     try {
         const response = axiosInstance.get(`/cource/${cid}`);
+        console.log(' lecture response', response)
         toast.promise(response, {
             loading: "Fetching course lectures",
             success: "Lectures fetched successfully",
@@ -31,7 +33,7 @@ export const addCourseLecture = createAsyncThunk("/course/addlecture", async (da
         formData.append("title", data.title);
         formData.append("description", data.description);
         console.log(data.id)
-        const response = axiosInstance.post(`/cource/${data.id}`, formData);
+        const response = await axiosInstance.post(`/cource/${data.id}`, formData);
         toast.promise(response, {
             loading: "Adding course lecture",
             success: "Lecture added successfully",
@@ -46,7 +48,7 @@ export const addCourseLecture = createAsyncThunk("/course/addlecture", async (da
 export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
     try {
 
-        const response = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
+        const response = await axiosInstance.delete(`/cource?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response, {
             loading: "deleting course lecture",
             success: "Lecture deleted successfully",
@@ -59,18 +61,32 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", as
 });
 
 
+export const addComment = createAsyncThunk('/add/comment', async (data) => {
+    const response = await axiosInstance(`/cource/comment/${data}`)
+    toast.promise(response, {
+        loading: "Adding comment",
+        success: "Comment add successfully",
+        error: "Failed to add comment"
+    })
+    return (await response).data
+})
+
 const lectureSlice = createSlice({
     name: "lecture",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getCourseLectures.fulfilled, (state, action) => {
-            console.log(action);
-            state.lectures = action?.payload?.lectures;
-        })
+        builder
+            .addCase(getCourseLectures.fulfilled, (state, action) => {
+                console.log(action)
+                state.lectures = action.payload.cource.lectures
+            })
             .addCase(addCourseLecture.fulfilled, (state, action) => {
                 console.log(action);
-                // state.lectures = action?.payload?.course?.lectures;
+                state.lectures = action?.payload?.course?.lectures;
+            })
+            .addCase(addComment.fulfilled, (state, action) => {
+                state.Comment = action.payload
             })
     }
 });

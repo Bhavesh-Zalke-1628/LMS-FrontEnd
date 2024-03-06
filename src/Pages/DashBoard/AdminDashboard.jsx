@@ -42,7 +42,7 @@ function AdminDashboard() {
         datasets: [
             {
                 label: "Sales / Month",
-                data: [10,20,10,5,1,2,4,5,8,42,11],
+                data: [10, 20, 10, 5, 1, 2, 4, 5, 8, 42, 11],
                 backgroundColor: ["red"],
                 borderColor: ["white"],
                 borderWidth: 2
@@ -77,7 +77,6 @@ function AdminDashboard() {
     return (
         <HomeLayout>
             <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
-
                 <h1 className=' text-center font-semibold text-yellow-500 text-5xl'>Admin Dashboard</h1>
                 <div className=' grid grid-cols-2 gap-5 m-auto mx-10'>
                     <div className=' flex flex-col items-center gap-10 p-5 shadow-lg rounded-lg'>
@@ -146,6 +145,7 @@ function AdminDashboard() {
                                 <th>Cource Title</th>
                                 <th>Cource Categeory</th>
                                 <th>Cource instructor</th>
+                                <th>Lectures</th>
                                 <th>Description</th>
                                 <th>action</th>
                             </tr>
@@ -168,8 +168,10 @@ function AdminDashboard() {
                                         <td>
                                             {course?.categeory}
                                         </td>
-
                                         <td>
+                                            {course?.createdBy}
+                                        </td>
+                                        <td className=' text-center'>
                                             {course?.numberOfLecture}
                                         </td>
                                         <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
