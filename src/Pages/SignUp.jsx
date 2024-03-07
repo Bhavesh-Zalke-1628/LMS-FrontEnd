@@ -14,6 +14,7 @@ function Signup() {
     const navigate = useNavigate();
 
 
+    
     const [previewImage, setPreviewImage] = useState("");
 
     const [signupData, setSignupData] = useState({

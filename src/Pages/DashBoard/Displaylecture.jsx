@@ -6,25 +6,22 @@ import HomeLayout from '../../Layouts/HomeLayout.jsx'
 import CommentCom from "../Comment/CommentCom.jsx";
 import toast from "react-hot-toast";
 import TypewriterComponent from "typewriter-effect";
+import { combineReducers } from "@reduxjs/toolkit";
 function Displaylectures() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { state } = useLocation();
     const { lectures } = useSelector((state) => state.lecture);
-    console.log('lectures', lectures)
     const { role } = useSelector((state) => state.auth);
     const data = useSelector((state) => state?.auth?.data)
     const [currentVideo, setCurrentVideo] = useState(0);
-    console.log(currentVideo)
     const [commentData, setCommenntData] = useState({
         comment: ""
     })
 
-    const [onSend, setOnSend] = useState(false)
 
     async function onLectureDelete(courseId, lectureId) {
-        console.log(courseId, lectureId);
         await dispatch(deleteCourseLecture({ courseId: courseId, lectureId: lectureId }));
         await dispatch(getCourseLectures(courseId));
     }
@@ -38,23 +35,22 @@ function Displaylectures() {
         })
     }
 
-    console.log('commentData', commentData)
-    async function handleClick(event) {
-        console.log("hello")
+    async function handleFormSubmit(event) {
         event.preventDefault();
         if (!commentData.comment) {
             toast.error("Add comment please !!")
         }
+        const x = [
+            state._id,
+            lectures[currentVideo]._id
+        ]
         const formData = new FormData()
-        formData.append('name', data.fullname)
         formData.append('comment', commentData.comment)
-
-
-        const res = dispatch(addComment(formData))
-        setCommenntData('')
+        const res = dispatch(addComment([x, formData]))
+        if (res.payload.success)
+            setCommenntData('')
 
     }
-
     useEffect(() => {
         if (!state) navigate("/cources");
         dispatch(getCourseLectures(state._id));
@@ -102,7 +98,7 @@ function Displaylectures() {
                                     <p className=" text-xl font-bold text-yellow-500">
                                         Comment :-
                                     </p>
-                                    <form onSubmit={handleClick}>
+                                    <form onSubmit={handleFormSubmit}>
                                         <div className="flex flex-col gap-2">
                                             <div className=" flex gap-10">
                                                 <input
@@ -115,23 +111,29 @@ function Displaylectures() {
                                                     className=" px-4 py-1 font-semibold border bg-transparent border-white rounded-md mt-2   outline-none "
                                                 />
                                                 <button
-
                                                     type='submit'
                                                     className=" px-5 bg-yellow-400 py-1 mt-2 text-white text-xl rounded-md text-center font-semibold cursor-pointer capitalize hover:bg-white hover:text-yellow-400 hover:border-yellow-500 outline transition-all ease-in-out duration-400">
                                                     send
                                                 </button>
                                             </div>
-                                            <div className=" bg-yellow-200 overflow-auto max-h-28">
+                                            {
+                                                <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
+                                                    comments : {
+                                                        lectures[currentVideo].comments.length
+                                                    }
+                                                </p>
+                                            }
+                                            <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer">
 
                                                 {
-                                                    console.log('lectures[currentVideo]', lectures[currentVideo ])
-                                                }
-                                                {
-                                                    lectures[currentVideo].comments.map((ele) => {
-                                                        console.log(ele)
-                                                        return <CommentCom data={ele} />
-                                                    })
-                                                    // lectures[0]
+                                                    lectures[currentVideo].comments ? (
+
+                                                        lectures[currentVideo].comments.map((ele) => {
+                                                            return <CommentCom key={ele._id} data={ele} />
+                                                        })
+                                                    ) : (
+                                                        <h1 className=" text-yellow-400">No comment</h1>
+                                                    )
                                                 }
                                             </div>
                                         </div>

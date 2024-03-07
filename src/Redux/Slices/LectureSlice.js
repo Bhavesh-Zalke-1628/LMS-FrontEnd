@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import toast from "react-hot-toast";
 
 import axiosInstance from "../../Helpers/axiosInstance";
+import axios from "axios";
 
 const initialState = {
     lectures: [],
@@ -13,7 +14,6 @@ const initialState = {
 export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (cid) => {
     try {
         const response = axiosInstance.get(`/cource/${cid}`);
-        console.log(' lecture response', response)
         toast.promise(response, {
             loading: "Fetching course lectures",
             success: "Lectures fetched successfully",
@@ -62,13 +62,15 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", as
 
 
 export const addComment = createAsyncThunk('/add/comment', async (data) => {
-    const response = await axiosInstance(`/cource/comment/${data}`)
-    toast.promise(response, {
-        loading: "Adding comment",
-        success: "Comment add successfully",
-        error: "Failed to add comment"
-    })
-    return (await response).data
+    console.log(data[0][0])
+    const response = await axios.post(`http://localhost:5000/api/cource/${data[0][0]}/comment/${data[0][0]}`)
+    console.log(data[1])
+    // toast.promise(response, {
+    //     loading: "Adding comment",
+    //     success: "Comment add successfully",
+    //     error: "Failed to add comment"
+    // })
+    // return (await response).data
 })
 
 const lectureSlice = createSlice({
@@ -78,7 +80,6 @@ const lectureSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getCourseLectures.fulfilled, (state, action) => {
-                console.log(action)
                 state.lectures = action.payload.cource.lectures
             })
             .addCase(addCourseLecture.fulfilled, (state, action) => {
