@@ -16,10 +16,7 @@ function Displaylectures() {
     const { role } = useSelector((state) => state.auth);
     const data = useSelector((state) => state?.auth?.data)
     const [currentVideo, setCurrentVideo] = useState(0);
-    const [commentData, setCommenntData] = useState({
-        comment: ""
-    })
-
+    const [commentData, setCommenntData] = useState('')
 
     async function onLectureDelete(courseId, lectureId) {
         await dispatch(deleteCourseLecture({ courseId: courseId, lectureId: lectureId }));
@@ -37,18 +34,17 @@ function Displaylectures() {
 
     async function handleFormSubmit(event) {
         event.preventDefault();
-        if (!commentData.comment) {
+        if (!commentData) {
             toast.error("Add comment please !!")
         }
         const x = [
             state._id,
             lectures[currentVideo]._id
         ]
+        console.log(commentData)
         const formData = new FormData()
-        formData.append('comment', commentData.comment)
+        formData.append('comment', commentData)
         const res = dispatch(addComment([x, formData]))
-        if (res.payload.success)
-            setCommenntData('')
 
     }
     useEffect(() => {
@@ -57,12 +53,9 @@ function Displaylectures() {
     }, []);
 
     return (
-
         <HomeLayout>
-
             <div className="flex flex-col gap-10 items-center justify-center h-[90vh] py-10 text-wihte mx-[5%] ">
                 <div className="text-center text-2xl font-semibold text-yellow-500">
-
                     Course Name: {state?.title}
                 </div>
                 {(lectures && lectures.length > 0) ?
@@ -76,7 +69,6 @@ function Displaylectures() {
                                 disablePictureInPicture
                                 muted
                                 controlsList="nodownload"
-
                             >
                             </video>
                             <div>
@@ -105,7 +97,7 @@ function Displaylectures() {
                                                     type="text"
                                                     name="comment"
                                                     id="comment"
-                                                    value={commentData.comment}
+                                                    value={commentData}
                                                     onChange={handleUserInput}
                                                     placeholder="Enter your comment"
                                                     className=" px-4 py-1 font-semibold border bg-transparent border-white rounded-md mt-2   outline-none "
@@ -124,10 +116,8 @@ function Displaylectures() {
                                                 </p>
                                             }
                                             <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer">
-
                                                 {
                                                     lectures[currentVideo].comments ? (
-
                                                         lectures[currentVideo].comments.map((ele) => {
                                                             return <CommentCom key={ele._id} data={ele} />
                                                         })

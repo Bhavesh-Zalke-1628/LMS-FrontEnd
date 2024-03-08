@@ -204,9 +204,7 @@ function AdminDashboard() {
                     </table>
                 </div>
             </div>
-
         </HomeLayout >
     )
 }
-
 export default AdminDashboard

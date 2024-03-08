@@ -6,9 +6,9 @@ import axiosInstance from "../../Helpers/axiosInstance";
 import axios from "axios";
 
 const initialState = {
-    lectures: [],
+    lectures: [],  
     Comment: ""
-}
+} 
 
 
 export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (cid) => {
