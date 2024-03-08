@@ -85,6 +85,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
 export const getUserData = createAsyncThunk("/user/details", async () => {
     try {
         const res = axiosInstance.get("/auth/me")
+        console.log(res)
         return (await res).data;
     } catch (error) {
         toast.error(error.message);
@@ -118,6 +119,7 @@ const authSlice = createSlice({
                 localStorage.setItem("isLoggedIn", true);
                 localStorage.setItem("role", action?.payload?.user?.role);
                 state.isLoggedIn = true;
+                console.log(action?.payload?.user)
                 state.data = action?.payload?.user;
                 state.role = action?.payload?.user?.role;
             });

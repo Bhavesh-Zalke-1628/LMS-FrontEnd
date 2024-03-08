@@ -11,7 +11,7 @@ function UserProfile() {
     const dispatch = useDispatch();
     const userData = useSelector((state) => state?.auth?.data);
     const navigate = useNavigate()
-
+    console.log(userData)
     async function handleCancellation() {
         toast("Initiating cancellation");
         await dispatch(cancelCourseBundle());
