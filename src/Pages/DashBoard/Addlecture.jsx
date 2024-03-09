@@ -31,6 +31,7 @@ function Addlecture() {
     function handleVideo(e) {
         e.preventDefault();
         const video = e.target.files[0]
+        console.log('video', video)
         const source = window.URL.createObjectURL(video)
         console.log(source)
         setUserInput({
@@ -48,8 +49,8 @@ function Addlecture() {
         }
 
         const respose = await dispatch(addCourseLecture(userInput));
-
-        if (respose?.payload?.success) {
+        console.log(respose)
+        if (respose?.payload?.success == true) {
             setUserInput({
                 id: courceDetails?._id,
                 lecture: undefined,
@@ -115,13 +116,13 @@ function Addlecture() {
                             <div className=' h-48 border flex items-center justify-center cursor-pointer'>
                                 <label htmlFor='lecture' className=' font-semibold text-xl cursor-pointer'>Chose your video</label>
                                 <input
-                                    type="file"
+                                    type='file'
                                     className=' hidden'
                                     name='lecture'
                                     onChange={handleVideo}
                                     id='lecture'
-                                    
-                                    accept='video/mp4 video/*'
+                                    accept='video/mp4'
+
                                 />
                             </div>
 
@@ -141,9 +142,5 @@ function Addlecture() {
 }
 
 export default Addlecture
-
-
-
-// /22 min
 
 

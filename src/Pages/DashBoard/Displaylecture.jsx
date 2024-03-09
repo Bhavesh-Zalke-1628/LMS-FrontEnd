@@ -47,9 +47,14 @@ function Displaylectures() {
         const res = dispatch(addComment([x, formData]))
 
     }
+    async function loadData() {
+        await dispatch(getCourseLectures(state._id));
+
+    }
+
     useEffect(() => {
         if (!state) navigate("/cources");
-        dispatch(getCourseLectures(state._id));
+        loadData()
     }, []);
 
     return (
@@ -62,6 +67,7 @@ function Displaylectures() {
                     (<div className="flex justify-center gap-10 w-full">
                         {/* left section for playing videos and displaying course details to admin */}
                         <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
+                           {console.log( lectures[currentVideo])}
                             <video
                                 src={lectures && lectures[currentVideo]?.lecture?.secure_url}
                                 className="object-fill rounded-tl-lg rounded-tr-lg w-full"

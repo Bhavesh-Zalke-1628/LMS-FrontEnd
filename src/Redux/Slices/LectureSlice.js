@@ -6,9 +6,9 @@ import axiosInstance from "../../Helpers/axiosInstance";
 import axios from "axios";
 
 const initialState = {
-    lectures: [],  
+    lectures: [],
     Comment: ""
-} 
+}
 
 
 export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (cid) => {
@@ -32,13 +32,15 @@ export const addCourseLecture = createAsyncThunk("/course/addlecture", async (da
         formData.append("lecture", data.lecture);
         formData.append("title", data.title);
         formData.append("description", data.description);
-        console.log(data.id)
-        const response = await axiosInstance.post(`/cource/${data.id}`, formData);
+        console.log(formData)
+        const response = axiosInstance.post(`/cource/${data.id}`, formData);
+        console.log(response)
         toast.promise(response, {
             loading: "Adding course lecture",
             success: "Lecture added successfully",
             error: "Failed to add the lectures"
         });
+        console.log(response)
         return (await response).data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
