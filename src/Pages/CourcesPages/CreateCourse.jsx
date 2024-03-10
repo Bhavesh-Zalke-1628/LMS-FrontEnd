@@ -20,24 +20,45 @@ function CreateCourse() {
         previewImage: ""
     })
 
+
     // Cource Thmbnails
-    function handleImageInout(e) {
-        // e.prevenetDefault();
-        e.preventDefault()
-        const uploadedImg = e.target.files[0];
-        if (uploadedImg) {
+    // function handleImageInout(e) {
+    //     // e.prevenetDefault();
+    //     e.preventDefault()
+    //     const uploadedImg = e.target.files[0];
+    //     if (uploadedImg) {
+    //         const fileReader = new FileReader();
+    //         fileReader.readAsDataURL(uploadedImg)
+    //         // console.log(this.result)
+    //         fileReader.addEventListener('load', function () {
+    //             setUserInput({
+    //                 ...userInput,
+    //                 previewImage: this.result,
+    //                 thubmnails: uploadedImg
+    //             })
+    //         })
+    //     }
+    // }
+
+    function handleImageUpload(e) {
+        e.preventDefault();
+        const uploadedImage = e.target.files[0];
+        console.log(e.target.files[0])
+        if (uploadedImage) {
             const fileReader = new FileReader();
-            fileReader.readAsDataURL(uploadedImg)
-            // console.log(this.result)
-            fileReader.addEventListener('load', function () {
+            fileReader.readAsDataURL(uploadedImage);
+            fileReader.addEventListener("load", function () {
                 setUserInput({
                     ...userInput,
                     previewImage: this.result,
-                    thubmnails: uploadedImg
+                    thumbnails: uploadedImage
                 })
             })
         }
     }
+
+
+
 
     function handleUserInput(event) {
         const { name, value } = event.target;
@@ -108,7 +129,7 @@ function CreateCourse() {
                                     id="imageUpload"
                                     accept=".jpg, .jpeg, .png"
                                     name="imageUploads"
-                                    onChange={handleImageInout}
+                                    onChange={handleImageUpload}
                                 />
                             </div>
                             <div className=" flex flex-col gap-1 ">

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { json, useLocation, useNavigate } from "react-router-dom";
 import { addComment, deleteCourseLecture, getCourseLectures } from '../../Redux/Slices/LectureSlice.js'
 import HomeLayout from '../../Layouts/HomeLayout.jsx'
 import CommentCom from "../Comment/CommentCom.jsx";
 import toast from "react-hot-toast";
-import TypewriterComponent from "typewriter-effect";
-import { combineReducers } from "@reduxjs/toolkit";
 function Displaylectures() {
 
+    const vel =new Date
+    console.log(vel.getMonth())
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { state } = useLocation();
@@ -45,7 +45,8 @@ function Displaylectures() {
         ]
         const y = [
             commentData.comment,
-            data.fullname
+            data.fullname,
+            data.avatar.secure_url
         ]
         const res = dispatch(addComment([x, y]))
 
@@ -118,7 +119,7 @@ function Displaylectures() {
                                                     </button>
                                                 </div>
                                                 {
-                                                    <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
+                                                    <p className=" text-white font-semibold text-xl rounded-lg  w-fit text-center px-4 py-1 mt-2">
                                                         comments : {
                                                             lectures[currentVideo].comments.length
                                                         }
@@ -128,7 +129,7 @@ function Displaylectures() {
                                                     {
                                                         lectures[currentVideo].comments ? (
                                                             lectures[currentVideo].comments.map((ele) => {
-                                                                return <CommentCom key={ele._id} data={ele} />
+                                                                return <CommentCom key={ele._id} data={ele} userData= {data } />
                                                             })
                                                         ) : (
                                                             <h1 className=" text-yellow-400">No comment</h1>

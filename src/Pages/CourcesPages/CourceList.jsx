@@ -11,7 +11,6 @@ function CourseList() {
     const { courseData } = useSelector((state) => {
         return state.courses
     });
-    console.log(courseData)
     async function loadCourses() {
         await dispatch(getAllCourses());
     }

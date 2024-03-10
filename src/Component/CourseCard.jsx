@@ -8,9 +8,7 @@ function CourseCard({ data }) {
             )}
             className="text-white w-[22rem] h-[430px] shadow-lg rounded-lg cursor-pointer group overflow-hidden bg-zinc-700">
             <div className="overflow-hidden">
-                {
-                    console.log(data.thumbnails.secure_url)
-                }
+                
                 <img
                     className="h-48 w-full rounded-tl-lg rounded-tr-lg group-hover:scale=[1,2] transition-all ease-in-out diration-300"
                     src={data?.thumbnails?.secure_url}
