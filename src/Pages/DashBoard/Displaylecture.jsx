@@ -16,7 +16,9 @@ function Displaylectures() {
     const { role } = useSelector((state) => state.auth);
     const data = useSelector((state) => state?.auth?.data)
     const [currentVideo, setCurrentVideo] = useState(0);
-    const [commentData, setCommenntData] = useState('')
+    const [commentData, setCommenntData] = useState({
+        comment: ""
+    })
 
     async function onLectureDelete(courseId, lectureId) {
         await dispatch(deleteCourseLecture({ courseId: courseId, lectureId: lectureId }));
@@ -34,17 +36,18 @@ function Displaylectures() {
 
     async function handleFormSubmit(event) {
         event.preventDefault();
-        if (!commentData) {
+        if (!commentData.comment) {
             toast.error("Add comment please !!")
         }
         const x = [
             state._id,
             lectures[currentVideo]._id
         ]
-        console.log(commentData)
-        const formData = new FormData()
-        formData.append('comment', commentData)
-        const res = dispatch(addComment([x, formData]))
+        const y = [
+            commentData.comment,
+            data.fullname
+        ]
+        const res = dispatch(addComment([x, y]))
 
     }
     async function loadData() {
@@ -67,7 +70,7 @@ function Displaylectures() {
                     (<div className="flex justify-center gap-10 w-full">
                         {/* left section for playing videos and displaying course details to admin */}
                         <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
-                           {console.log( lectures[currentVideo])}
+                            {console.log(lectures[currentVideo])}
                             <video
                                 src={lectures && lectures[currentVideo]?.lecture?.secure_url}
                                 className="object-fill rounded-tl-lg rounded-tr-lg w-full"
@@ -91,51 +94,75 @@ function Displaylectures() {
                                 </p>
                             </div>
                             {
-                                role == "User" &&
-                                <div>
-                                    <p className=" text-xl font-bold text-yellow-500">
-                                        Comment :-
-                                    </p>
-                                    <form onSubmit={handleFormSubmit}>
-                                        <div className="flex flex-col gap-2">
-                                            <div className=" flex gap-10">
-                                                <input
-                                                    type="text"
-                                                    name="comment"
-                                                    id="comment"
-                                                    value={commentData}
-                                                    onChange={handleUserInput}
-                                                    placeholder="Enter your comment"
-                                                    className=" px-4 py-1 font-semibold border bg-transparent border-white rounded-md mt-2   outline-none "
-                                                />
-                                                <button
-                                                    type='submit'
-                                                    className=" px-5 bg-yellow-400 py-1 mt-2 text-white text-xl rounded-md text-center font-semibold cursor-pointer capitalize hover:bg-white hover:text-yellow-400 hover:border-yellow-500 outline transition-all ease-in-out duration-400">
-                                                    send
-                                                </button>
-                                            </div>
-                                            {
-                                                <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
-                                                    comments : {
-                                                        lectures[currentVideo].comments.length
-                                                    }
-                                                </p>
-                                            }
-                                            <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer">
+                                role == "User" ? (
+                                    <div>
+                                        <p className=" text-xl font-bold text-yellow-500">
+                                            Comment :-
+                                        </p>
+                                        <form onSubmit={handleFormSubmit}>
+                                            <div className="flex flex-col gap-2">
+                                                <div className=" flex gap-10">
+                                                    <input
+                                                        type="text"
+                                                        name="comment"
+                                                        id="comment"
+                                                        value={commentData.comment}
+                                                        onChange={handleUserInput}
+                                                        placeholder="Enter your comment"
+                                                        className=" px-4 py-1 font-semibold border bg-transparent border-white rounded-md mt-2   outline-none "
+                                                    />
+                                                    <button
+                                                        type='submit'
+                                                        className=" px-5 bg-yellow-400 py-1 mt-2 text-white text-xl rounded-md text-center font-semibold cursor-pointer capitalize hover:bg-white hover:text-yellow-400 hover:border-yellow-500 outline transition-all ease-in-out duration-400">
+                                                        send
+                                                    </button>
+                                                </div>
                                                 {
-                                                    lectures[currentVideo].comments ? (
-                                                        lectures[currentVideo].comments.map((ele) => {
-                                                            return <CommentCom key={ele._id} data={ele} />
-                                                        })
-                                                    ) : (
-                                                        <h1 className=" text-yellow-400">No comment</h1>
-                                                    )
+                                                    <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
+                                                        comments : {
+                                                            lectures[currentVideo].comments.length
+                                                        }
+                                                    </p>
                                                 }
+                                                <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer">
+                                                    {
+                                                        lectures[currentVideo].comments ? (
+                                                            lectures[currentVideo].comments.map((ele) => {
+                                                                return <CommentCom key={ele._id} data={ele} />
+                                                            })
+                                                        ) : (
+                                                            <h1 className=" text-yellow-400">No comment</h1>
+                                                        )
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
 
-                                </div>
+                                    </div>
+                                ) : (
+                                    <div>
+
+                                        {
+                                            <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
+                                                comments : {
+                                                    lectures[currentVideo].comments.length
+                                                }
+                                            </p>
+                                        }
+                                        <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer mt-2">
+                                            {
+                                                lectures[currentVideo].comments ? (
+                                                    lectures[currentVideo].comments.map((ele) => {
+                                                        return <CommentCom key={ele._id} data={ele} />
+                                                    })
+                                                ) : (
+                                                    <h1 className=" text-yellow-400">No comment</h1>
+                                                )
+                                            }
+                                        </div>
+                                    </div>
+
+                                )
                             }
                         </div>
                         {/* right section for displaying list of lectres */}
