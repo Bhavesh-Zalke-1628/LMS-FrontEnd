@@ -4,13 +4,15 @@ import CourceSlice from './Slices/CourceSlice.js';
 import RazorpaySlice from './Slices/RazorpaySlice.js';
 import LectureSlice from './Slices/LectureSlice.js';
 import StateSlice from './Slices/StatSlice.js'
+import PasswordSlice from './Slices/ChangePasswordSlice.js'
 const store = configureStore({
     reducer: {
         auth: authSlice,
         courses: CourceSlice,
         razorpay: RazorpaySlice,
         lecture: LectureSlice,
-        state: StateSlice
+        state: StateSlice,
+        password: PasswordSlice
     },
     devTools: true
 });

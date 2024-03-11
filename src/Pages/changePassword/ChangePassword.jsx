@@ -1,5 +1,4 @@
 import React from 'react'
-import HomeLayout from '../../Layouts/HomeLayout'
 
 function ChangePassword() {
     return (
@@ -22,7 +21,6 @@ function ChangePassword() {
                         className=' bg-transparent border-2 rounded-lg px-2 py-1'
                         placeholder='Enter Old Password'
                     />
-                    
                     <label
                         htmlFor="newPassword"
                         className=' text-xl text-white capitalize mt-4'
