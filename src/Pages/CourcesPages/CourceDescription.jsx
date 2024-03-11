@@ -24,7 +24,9 @@ function CourceDescription() {
                                 <p className=' font-semibold'>
                                     <span className=' text-yellow-500 font-bold capitalize'>Totoal Lecture : </span>
                                     {
-                                        state?.numbersOfLectures
+                                        // console.log(state)
+                                        state?.numberOfLecture
+
 
                                     }
                                 </p>

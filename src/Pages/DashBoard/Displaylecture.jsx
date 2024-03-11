@@ -7,7 +7,7 @@ import CommentCom from "../Comment/CommentCom.jsx";
 import toast from "react-hot-toast";
 function Displaylectures() {
 
-    const vel =new Date
+    const vel = new Date
     console.log(vel.getMonth())
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -129,7 +129,7 @@ function Displaylectures() {
                                                     {
                                                         lectures[currentVideo].comments ? (
                                                             lectures[currentVideo].comments.map((ele) => {
-                                                                return <CommentCom key={ele._id} data={ele} userData= {data } />
+                                                                return <CommentCom key={ele._id} data={ele} userData={data} />
                                                             })
                                                         ) : (
                                                             <h1 className=" text-yellow-400">No comment</h1>
@@ -171,7 +171,7 @@ function Displaylectures() {
                             <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
                                 <p>Lectures list</p>
                                 {role === "Admin" && (
-                                    <button onClick={() => navigate("/course/addlecture", { state: { ...state } })} className="btn-primary px-2 py-1 rounded-md font-semibold text-sm">
+                                    <button onClick={() => navigate("/course/addlecture", { state: { ...state } })} className=" border-2 px-3 py-2  rounded-md font-semibold text-sm shadow-[0_0_10px_black]">
                                         Add new lecture
                                     </button>
                                 )}
@@ -187,7 +187,7 @@ function Displaylectures() {
                                                 {lecture?.title}
                                             </p>
                                             {role === "Admin" && (
-                                                <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className=" bg-yellow-600 border-2 px-2 py-1 rounded-md font-semibold text-sm">
+                                                <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className=" bg-yellow-400 hover:bg-yellow-500 transition-all ease-in-out duration-300 px-2  shadow-[0_0_10px_black] py-1 rounded-md text-white outline-none font-semibold text-sm ">
                                                     Delete lecture
                                                 </button>
                                             )}

@@ -21,6 +21,7 @@ import CheeckOutFailure from './Pages/Payment/CheeckOutFailure'
 import Displaylectures from './Pages/DashBoard/Displaylecture'
 import Addlecture from './Pages/DashBoard/Addlecture'
 import AdminDashboard from './Pages/DashBoard/AdminDashboard'
+import ChangePassword from './Pages/User/ChangePassword'
 const App = () => {
   return (
     <>
@@ -50,6 +51,7 @@ const App = () => {
         <Route element={<RequireAuth allowedRoles={["Admin", "User"]} />}>
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/user/editprofile" element={<EditProfile />} />
+          <Route path='/changepassword' element={<ChangePassword />}></Route>
           <Route path="/checkout" element={<CheckOut />} />
           <Route path='/checkout/success' element={<CheckOutSuccess />} />
           <Route path='/checkout/fail' element={<CheeckOutFailure />} />

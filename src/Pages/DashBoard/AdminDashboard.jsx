@@ -58,7 +58,8 @@ function AdminDashboard() {
     async function onCourceDelte(id) {
         if (window.confirm("Are you want to delete the cource")) {
             const res = await dispatch(deleteCorce(id))
-            if (res?.payload?.success) {
+            console.log(res)
+            if (res?.payload) {
                 await dispatch(getAllCourses())
             }
         }
@@ -129,15 +130,15 @@ function AdminDashboard() {
                 <div className=' m-[10px] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10'>
                     <div className='  flex w-full items-center justify-between'>
                         <h1 className=' text-3xl text-center font-semibold capitalize'>courses overview</h1>
+                        <button
+                            onClick={() => {
+                                navigate('/course/create')
+                            }}
+                            className=' w-fit  bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded-md px-4 py-2 text-xl font-semibold cursor-pointer capitalize'
+                        >
+                            create new Course
+                        </button>
                     </div>
-                    <button
-                        onClick={() => {
-                            navigate('/course/create')
-                        }}
-                        className=' w-fit  bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded-md px-4 py-2 text-xl font-semibold cursor-pointer capitalize'
-                    >
-                        create new Course
-                    </button>
                     <table className=' table overflow-x-scroll'>
                         <thead>
                             <tr>
@@ -183,9 +184,9 @@ function AdminDashboard() {
 
                                             </textarea>
                                         </td>
-                                        <td className="flex items-center gap-4">
+                                        <td className=" flex gap-3">
                                             <button
-                                                className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
+                                                className="bg-green-900 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
                                                 onClick={() => navigate("/course/dispalylecture", { state: { ...course } })}
                                             >
                                                 <BsCollectionPlayFill />

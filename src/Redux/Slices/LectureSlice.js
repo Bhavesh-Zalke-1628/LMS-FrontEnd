@@ -49,7 +49,6 @@ export const addCourseLecture = createAsyncThunk("/course/addlecture", async (da
 
 export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
     try {
-
         const response = await axiosInstance.delete(`/cource?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response, {
             loading: "deleting course lecture",
@@ -68,7 +67,7 @@ export const addComment = createAsyncThunk('/add/comment', async (data) => {
     const response = await axios.post(`http://localhost:5000/api/cource/${data[0][0]}/comment/${data[0][1]}`, data[1])
     console.log(response.data.cource.lectures)
     toast.promise(response, {
-        loading : "Adding commnet", 
+        loading: "Adding commnet",
         success: "Comment add successfully",
         error: "Failed to add comment"
     }

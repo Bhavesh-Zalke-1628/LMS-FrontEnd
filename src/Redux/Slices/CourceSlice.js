@@ -20,14 +20,14 @@ export const getAllCourses = createAsyncThunk("/course/get", async () => {
 
 export const deleteCorce = createAsyncThunk("/course/delete", async (id) => {
     try {
-        const response = axiosInstance.delete(`/cource/${id}`);
+        const response =await axiosInstance.delete(`/cource/${id}`);
         console.log(response)
         toast.promise(response, {
             loading: " deleting course...",
             success: "Courses deleted successfully",
             error: "Failed to delete courses",
         });
-        return (await response).data.cources;
+        return (await response).data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
@@ -41,7 +41,6 @@ export const creatNewCourse = createAsyncThunk('/course/create', async (data) =>
         formData.append('categeory', data?.categeory)
         formData.append('createdBy', data?.createdBy)
         formData.append('thumbnails', data?.thumbnails)
-
         const response = axiosInstance.post('/cource', formData);
         toast.promise(response, {
             loading: "Crating new Cource",
@@ -58,12 +57,12 @@ const courseSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-
-        builder.addCase(getAllCourses.fulfilled, (state, action) => {
-            if (action.payload) {
-                state.courseData = [...action.payload];
-            }
-        })
+        builder
+            .addCase(getAllCourses.fulfilled, (state, action) => {
+                if (action.payload) {
+                    state.courseData = [...action.payload];
+                }
+            })
     }
 });
 
