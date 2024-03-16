@@ -6,7 +6,7 @@ import { json } from "react-router-dom";
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: JSON.parse(localStorage.getItem('data')) ||{}
+    data: JSON.parse(localStorage.getItem('data')) || {}
 }
 
 

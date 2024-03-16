@@ -40,7 +40,7 @@ function UserProfile() {
                     </div>
                     <div className="flex items-center justify-between gap-2">
                         <Link
-                            to="/send/email"
+                            to="/changepassword"
                             className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
                             <button>Change password</button>
 
@@ -54,7 +54,6 @@ function UserProfile() {
                                 }}>Edit profile</button>
                         </Link>
                     </div>
-                    {console.log(userData.subscription)}
                     {userData?.subscription?.status === "active" && (
                         <button onClick={handleCancellation} className="w-full bg-red-600 hover:bg-red-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
                             Cancel Subscription

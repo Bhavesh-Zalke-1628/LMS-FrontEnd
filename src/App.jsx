@@ -22,6 +22,7 @@ import Displaylectures from './Pages/DashBoard/Displaylecture'
 import Addlecture from './Pages/DashBoard/Addlecture'
 import AdminDashboard from './Pages/DashBoard/AdminDashboard'
 import SendEmail from './Pages/changePassword/SendEmail'
+import ChangePassword from './Pages/changePassword/ChangePassword'
 const App = () => {
   return (
     <>
@@ -51,7 +52,8 @@ const App = () => {
         <Route element={<RequireAuth allowedRoles={["Admin", "User"]} />}>
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/user/editprofile" element={<EditProfile />} />
-          <Route path='/send/email' element={<SendEmail />}></Route>
+          {/* <Route path='/send/email' element={<SendEmail />}></Route> */}
+          <Route path='/changepassword' element={<ChangePassword />}></Route>
           <Route path="/checkout" element={<CheckOut />} />
           <Route path='/checkout/success' element={<CheckOutSuccess />} />
           <Route path='/checkout/fail' element={<CheeckOutFailure />} />
