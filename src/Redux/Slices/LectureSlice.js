@@ -62,18 +62,6 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", as
 });
 
 
-export const addComment = createAsyncThunk('/add/comment', async (data) => {
-
-    const response = await axios.post(`http://localhost:5000/api/cource/${data[0][0]}/comment/${data[0][1]}`, data[1])
-    console.log(response.data.cource.lectures)
-    toast.promise(response, {
-        loading: "Adding commnet",
-        success: "Comment add successfully",
-        error: "Failed to add comment"
-    }
-    )
-    return (await response).data
-})
 
 const lectureSlice = createSlice({
     name: "lecture",
@@ -87,9 +75,6 @@ const lectureSlice = createSlice({
             .addCase(addCourseLecture.fulfilled, (state, action) => {
                 console.log(action);
                 state.lectures = action?.payload?.course?.lectures;
-            })
-            .addCase(addComment.fulfilled, (state, action) => {
-                state.Comment = action.payload
             })
     }
 });

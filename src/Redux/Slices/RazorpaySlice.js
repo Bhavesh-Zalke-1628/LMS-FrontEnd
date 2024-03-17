@@ -95,22 +95,40 @@ export const getPaymentRecord = createAsyncThunk(
     }
 );
 
+// export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
+//     try {
+//         const response = await axiosInstance.post("/payment/unsubscribe");
+//         console.log(response)
+//         toast.promise(response, {
+//             loading: "unsubscribing the bundle",
+//             success: (data) => {
+//                 return data?.data?.message
+//             },
+//             error: "Failed to ubsubscrive"
+//         })
+//         return (await response).data;
+//     } catch (error) {
+//         toast.error(error?.response?.data?.message);
+//     }
+// });
+
 export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
     try {
-        const response = axiosInstance.post("/payment/unsubscribe");
+        const response = await axiosInstance.post("/payment/unsubscribe");
+        console.log(response)
         toast.promise(response, {
             loading: "unsubscribing the bundle",
             success: (data) => {
-                return data?.data?.message
+                console.log(data?.data)
+                return data?.data?.msg
             },
-            error: "Failed to ubsubscrive"
+            error: "Failed to ubsubscribe"
         })
         return (await response).data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
 });
-
 const razorpaySlice = createSlice({
     name: "razorpay",
     initialState,

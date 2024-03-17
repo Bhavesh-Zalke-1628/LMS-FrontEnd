@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { getUserData } from '../../Redux/Slices/AuthSlice';
 function CheckOutSuccess() {
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(getUserData())
     }, []);

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { json, useLocation, useNavigate } from "react-router-dom";
-import { addComment, deleteCourseLecture, getCourseLectures } from '../../Redux/Slices/LectureSlice.js'
+import { deleteCourseLecture, getCourseLectures } from '../../Redux/Slices/LectureSlice.js'
 import HomeLayout from '../../Layouts/HomeLayout.jsx'
 import CommentCom from "../Comment/CommentCom.jsx";
 import toast from "react-hot-toast";
+import { addComment } from "../../Redux/Slices/CommentSlice.js";
 function Displaylectures() {
 
     const vel = new Date
@@ -49,6 +50,7 @@ function Displaylectures() {
             data.avatar.secure_url
         ]
         const res = dispatch(addComment([x, y]))
+        console.log(res)
 
     }
     async function loadData() {
@@ -94,6 +96,8 @@ function Displaylectures() {
                                     {lectures && lectures[currentVideo]?.description}
                                 </p>
                             </div>
+
+                            {/* Comment section */}
                             {
                                 role == "User" ? (
                                     <div>
@@ -125,17 +129,16 @@ function Displaylectures() {
                                                         }
                                                     </p>
                                                 }
-                                                <div className=" shadow-[0_0_10px_black] overflow-auto max-h-28 px-5 rounded-e-lg cursor-pointer">
-                                                    {
-                                                        lectures[currentVideo].comments ? (
-                                                            lectures[currentVideo].comments.map((ele) => {
-                                                                return <CommentCom key={ele._id} data={ele} userData={data} />
-                                                            })
-                                                        ) : (
-                                                            <h1 className=" text-yellow-400">No comment</h1>
-                                                        )
-                                                    }
+                                                <div className="shadow-[0_0_10px_black] overflow-y-scroll max-h-28 px-5 rounded-lg cursor-pointer" style={{ scrollbarWidth: 'none', '-ms-overflow-style': 'none', '&::-webkit-scrollbar': { display: 'none' } }}>
+                                                    {lectures[currentVideo].comments ? (
+                                                        lectures[currentVideo].comments.map((ele) => {
+                                                            return <CommentCom key={ele._id} data={ele} userData={data} />;
+                                                        })
+                                                    ) : (
+                                                        <h1 className="text-yellow-400">No comment</h1>
+                                                    )}
                                                 </div>
+
                                             </div>
                                         </form>
 

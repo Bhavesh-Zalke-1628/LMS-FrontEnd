@@ -5,6 +5,7 @@ import RazorpaySlice from './Slices/RazorpaySlice.js';
 import LectureSlice from './Slices/LectureSlice.js';
 import StateSlice from './Slices/StatSlice.js'
 import PasswordSlice from './Slices/ChangePasswordSlice.js'
+import CommentSlice from './Slices/CommentSlice.js';
 const store = configureStore({
     reducer: {
         auth: authSlice,
@@ -12,7 +13,8 @@ const store = configureStore({
         razorpay: RazorpaySlice,
         lecture: LectureSlice,
         state: StateSlice,
-        password: PasswordSlice
+        password: PasswordSlice,
+        commnet: CommentSlice
     },
     devTools: true
 });
