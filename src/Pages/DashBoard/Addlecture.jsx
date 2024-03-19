@@ -8,7 +8,6 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 function Addlecture() {
     const courceDetails = useLocation().state;
-    console.log(courceDetails)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -59,6 +58,7 @@ function Addlecture() {
                 videoSrc: ""
             })
         }
+        // navigate('/course/dispalylecture')
         navigate('/course/dispalylecture')
     }
 

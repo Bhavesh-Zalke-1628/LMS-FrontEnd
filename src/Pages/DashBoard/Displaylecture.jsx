@@ -9,7 +9,6 @@ import { addComment } from "../../Redux/Slices/CommentSlice.js";
 function Displaylectures() {
 
     const vel = new Date
-    console.log(vel.getMonth())
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { state } = useLocation();
@@ -22,8 +21,10 @@ function Displaylectures() {
     })
 
     async function onLectureDelete(courseId, lectureId) {
-        await dispatch(deleteCourseLecture({ courseId: courseId, lectureId: lectureId }));
-        await dispatch(getCourseLectures(courseId));
+        if (window.confirm("Are you want to delete the cource")) {
+            await dispatch(deleteCourseLecture({ courseId: courseId, lectureId: lectureId }));
+            await dispatch(getCourseLectures(courseId));
+        }
     }
 
 
@@ -50,12 +51,10 @@ function Displaylectures() {
             data.avatar.secure_url
         ]
         const res = dispatch(addComment([x, y]))
-        console.log(res)
 
     }
     async function loadData() {
-        await dispatch(getCourseLectures(state._id));
-
+        await dispatch(getCourseLectures(state?._id));
     }
 
     useEffect(() => {
@@ -73,7 +72,6 @@ function Displaylectures() {
                     (<div className="flex justify-center gap-10 w-full">
                         {/* left section for playing videos and displaying course details to admin */}
                         <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
-                            {console.log(lectures[currentVideo])}
                             <video
                                 src={lectures && lectures[currentVideo]?.lecture?.secure_url}
                                 className="object-fill rounded-tl-lg rounded-tr-lg w-full"

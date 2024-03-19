@@ -20,26 +20,6 @@ function CreateCourse() {
         previewImage: ""
     })
 
-
-    // Cource Thmbnails
-    // function handleImageInout(e) {
-    //     // e.prevenetDefault();
-    //     e.preventDefault()
-    //     const uploadedImg = e.target.files[0];
-    //     if (uploadedImg) {
-    //         const fileReader = new FileReader();
-    //         fileReader.readAsDataURL(uploadedImg)
-    //         // console.log(this.result)
-    //         fileReader.addEventListener('load', function () {
-    //             setUserInput({
-    //                 ...userInput,
-    //                 previewImage: this.result,
-    //                 thubmnails: uploadedImg
-    //             })
-    //         })
-    //     }
-    // }
-
     function handleImageUpload(e) {
         e.preventDefault();
         const uploadedImage = e.target.files[0];
@@ -91,7 +71,6 @@ function CreateCourse() {
     return (
         <HomeLayout>
             <div className=" flex items-center justify-center h-[90vh]">
-
                 <form
                     noValidate
                     onSubmit={onFormSubmit}

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
-
+import axiosInstance from '../../Helpers/axiosInstance.js'
+import toast from "react-hot-toast"
 const initialState = {
     Comment: ""
 }
@@ -19,6 +20,21 @@ export const addComment = createAsyncThunk('/add/comment', async (data) => {
     return (await response).data
 })
 
+export const deleteCommnet = createAsyncThunk('/delete/commnet', async (data) => {
+    const response = await axiosInstance.get(`/cource/delete-comment`)
+    console.log(response)
+    console.log(data)
+    try {
+        toast.promise(response, {
+            loading: "Deleting comment",
+            success: "Comment deleted successfully",
+            error: "Failed to delete comment"
+        })
+        return (await response).data;
+    } catch (error) {
+        toast.error(error.message)
+    }
+})
 const commnetSlice = createSlice({
     name: "Comment",
     initialState,

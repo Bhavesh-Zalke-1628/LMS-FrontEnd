@@ -31,7 +31,6 @@ function CourseList() {
                 <div className="mb-10 flex flex-wrap gap-28 px-14">
                     {courseData.map((element) => {
                         return <CourseCard key={element._id} data={element} />
-                        // console.log(element)
                     })}
                 </div>
             </div>

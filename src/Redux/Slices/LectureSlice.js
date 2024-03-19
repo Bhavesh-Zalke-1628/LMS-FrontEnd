@@ -25,31 +25,48 @@ export const getCourseLectures = createAsyncThunk("/course/lecture/get", async (
     }
 });
 
-export const addCourseLecture = createAsyncThunk("/course/addlecture", async (data) => {
+
+export const addCourseLecture = createAsyncThunk("/course/lecture/addlecture", async (data) => {
     try {
-        console.log('addCourseLecture data', data)
         const formData = new FormData();
         formData.append("lecture", data.lecture);
         formData.append("title", data.title);
         formData.append("description", data.description);
-        console.log(formData)
+
         const response = axiosInstance.post(`/cource/${data.id}`, formData);
-        console.log(response)
         toast.promise(response, {
-            loading: "Adding course lecture",
+            loading: "adding course lecture",
             success: "Lecture added successfully",
             error: "Failed to add the lectures"
         });
-        console.log(response)
         return (await response).data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
 });
 
+
+
+// export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
+//     try {
+//         console.log(data)
+//         const response = await axiosInstance.delete(`/cource?courseId=${data.courseId}&lectureId=${data.lectureId}`);
+//         console.log(response)
+//         toast.promise(response, {
+//             loading: "deleting course lecture",
+//             success: "Lecture deleted successfully",
+//             error: "Failed to delete the lectures"
+//         });
+//         return (await response).data;
+//     } catch (error) {
+//         toast.error(error?.response?.data?.message);
+//     }
+// });
+
 export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", async (data) => {
     try {
-        const response = await axiosInstance.delete(`/cource?courseId=${data.courseId}&lectureId=${data.lectureId}`);
+
+        const response = axiosInstance.delete(`/cource?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.promise(response, {
             loading: "deleting course lecture",
             success: "Lecture deleted successfully",
@@ -60,6 +77,7 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete", as
         toast.error(error?.response?.data?.message);
     }
 });
+
 
 
 

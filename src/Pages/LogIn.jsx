@@ -35,7 +35,7 @@ function Signup() {
         const response = await dispatch(login(loginData));
         console.log(response)
         if (response?.payload?.success)
-            navigate("/user/profile");
+            navigate(-1);
 
         setLoginData({
             email: "",
