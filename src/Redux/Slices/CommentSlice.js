@@ -17,7 +17,7 @@ export const addComment = createAsyncThunk('/add/comment', async (data) => {
         error: "Failed to add comment"
     }
     )
-    return (await response).data
+    return (await response).data.cource.lectures;
 })
 
 export const deleteCommnet = createAsyncThunk('/delete/commnet', async (data) => {

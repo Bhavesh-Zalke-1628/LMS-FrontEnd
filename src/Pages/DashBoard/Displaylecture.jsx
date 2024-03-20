@@ -48,7 +48,7 @@ function Displaylectures() {
         const y = [
             commentData.comment,
             data.fullname,
-            data.avatar.secure_url
+            data?.avatar?.secure_url
         ]
         const res = dispatch(addComment([x, y]))
 
@@ -143,7 +143,6 @@ function Displaylectures() {
                                     </div>
                                 ) : (
                                     <div>
-
                                         {
                                             <p className=" text-white font-semibold text-xl rounded-lg shadow-[0_0_10px_black] w-fit text-center px-4 py-1 mt-2">
                                                 comments : {

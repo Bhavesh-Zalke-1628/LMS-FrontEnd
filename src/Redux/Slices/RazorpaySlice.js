@@ -49,28 +49,6 @@ export const verifyUserPayment = createAsyncThunk("/payments/verify", async (dat
     }
 });
 
-// export const getPaymentRecord = createAsyncThunk("/payments/record", async () => {
-//     try {
-//         console.log(
-//             "Get payment record"
-//         )
-//         const response =await axios.get('http://localhost:5000/api/payment?count=100')
-//         console.log(response)
-//         toast.promise(response, {
-//             loading: "Getting the payment records",
-//             success: (data) => {
-//                 return data?.data?.msg
-//             },
-//             error: "Failed to get payment records"
-//         })
-//         console.log((await response).data.payments)
-//         return (await response).data;
-//     } catch (error) {
-//         toast.error("Operation failed");
-//     }
-// });
-
-
 
 export const getPaymentRecord = createAsyncThunk(
     '/payments/record',
@@ -95,38 +73,20 @@ export const getPaymentRecord = createAsyncThunk(
     }
 );
 
-// export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
-//     try {
-//         const response = await axiosInstance.post("/payment/unsubscribe");
-//         console.log(response)
-//         toast.promise(response, {
-//             loading: "unsubscribing the bundle",
-//             success: (data) => {
-//                 return data?.data?.message
-//             },
-//             error: "Failed to ubsubscrive"
-//         })
-//         return (await response).data;
-//     } catch (error) {
-//         toast.error(error?.response?.data?.message);
-//     }
-// });
 
 export const cancelCourseBundle = createAsyncThunk("/payments/cancel", async () => {
     try {
-        const response = await axiosInstance.post("/payment/unsubscribe");
-        console.log(response)
+        const response = axiosInstance.post("/payment/unsubscribe");
         toast.promise(response, {
             loading: "unsubscribing the bundle",
             success: (data) => {
-                console.log(data?.data)
                 return data?.data?.msg
             },
             error: "Failed to ubsubscribe"
         })
         return (await response).data;
     } catch (error) {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.response?.data?.msg);
     }
 });
 const razorpaySlice = createSlice({
@@ -156,6 +116,7 @@ const razorpaySlice = createSlice({
                 state.status = action?.asubscription?.status
             })
             .addCase(getPaymentRecord.fulfilled, (state, action) => {
+                console.log(action.payload)
                 state.allPayments = action?.payload?.allPayments;
                 state.finalMonths = action?.payload?.finalMonths;
                 state.monthlySalesRecord = action?.payload?.monthlySalesRecord;

@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { deleteCommnet } from '../../Redux/Slices/CommentSlice'
 
-
 function CommentCom({ data }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -12,9 +11,11 @@ function CommentCom({ data }) {
     async function handleClick() {
         dispatch(deleteCommnet("hello"))
     }
+
     useEffect(() => {
         handleClick()
     }, []);
+
     return (
         <>
             <div className=' flex  gap-2'>
@@ -29,7 +30,7 @@ function CommentCom({ data }) {
                         )
                             : (
                                 < h1 className=' capitalize py-1 bg-yellow-400 flex items-center justify-center text-gray-100 h-fit font-bold text-xl rounded-full'>
-                                    {data?.studentName.charAt(0)}
+                                    {data?.studentName?.charAt(0)}
                                 </h1>
                             )
                     }
@@ -47,7 +48,6 @@ function CommentCom({ data }) {
                 </div>
             </div >
         </>
-
     )
 }
 
