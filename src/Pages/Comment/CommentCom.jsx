@@ -3,6 +3,7 @@ import { BsTrash } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { deleteCommnet } from '../../Redux/Slices/CommentSlice'
+import Loader from '../../Component/Loader'
 
 function CommentCom({ data }) {
     const dispatch = useDispatch()

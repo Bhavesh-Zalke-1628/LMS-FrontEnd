@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import { isEmail } from '../Helpers/regexMatcher';
 import axios from 'axios';
 import axiosInstance from '../Helpers/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 function Contact() {
+  const navigate = useNavigate()
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -48,6 +50,7 @@ function Contact() {
           email: "",
           message: "",
         })
+        navigate('/')
       }
     } catch (error) {
       toast.error("Operation Failed")
