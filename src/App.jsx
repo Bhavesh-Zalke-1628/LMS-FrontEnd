@@ -21,7 +21,6 @@ import CheeckOutFailure from './Pages/Payment/CheeckOutFailure'
 import Displaylectures from './Pages/DashBoard/Displaylecture'
 import Addlecture from './Pages/DashBoard/Addlecture'
 import AdminDashboard from './Pages/DashBoard/AdminDashboard'
-import SendEmail from './Pages/changePassword/SendEmail'
 import ChangePassword from './Pages/changePassword/ChangePassword'
 const App = () => {
   return (
@@ -62,6 +61,9 @@ const App = () => {
         {/* DashBoard Pages  */}
         <Route path='/course/dispalylecture' element={<Displaylectures />}></Route>
 
+
+        {/* Dought Call
+        <Route path='/call' element={<Lobby />}></Route> */}
         {/* Denied Page */}
         <Route path='/denied' element={<Denied />}></Route>
         {/* Not Found Page */}
