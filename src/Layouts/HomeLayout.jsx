@@ -45,12 +45,7 @@ function HomeLayout({ children }) {
 
                 <div className="min-h-[90vh]">
 
-                    {/* <div
-                        class="transform  rounded-xl h-40 w-40 sm:h-64 sm:w-64 bg-white shadow-xl transition duration-300 hover:rotate-6">
-                        <div class="flex h-full justify-center items-center">
-                            <span class="font-bold text-green-600">Rotate</span>
-                        </div>
-                    </div> */}
+
                     <div className="drawer absolute left-0 z-50 w-fit">
                         <input className="drawer-toggle" id="my-drawer" type="checkbox" />
                         <div className="drawer-content">

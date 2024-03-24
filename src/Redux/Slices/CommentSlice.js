@@ -21,7 +21,7 @@ export const addComment = createAsyncThunk('/add/comment', async (data) => {
 })
 
 export const deleteCommnet = createAsyncThunk('/delete/commnet', async (data) => {
-    const response = await axiosInstance.get(`/cource/delete-comment`)
+    const response = await axiosInstance.delete(`/cource/delete-comment`)
     console.log(response)
     console.log(data)
     try {

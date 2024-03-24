@@ -34,7 +34,6 @@ function CourceDescription() {
                                     <span className=' text-yellow-500 font-bold'>Instructor : </span>
                                     {
                                         state?.createdBy
-
                                     }
                                 </p>
                             </div>

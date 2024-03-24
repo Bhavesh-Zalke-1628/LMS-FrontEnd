@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react'
 import { BsTrash } from 'react-icons/bs'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { deleteCommnet } from '../../Redux/Slices/CommentSlice'
 import Loader from '../../Component/Loader'
 
 function CommentCom({ data }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const { state } = useLocation()
+    const user = useSelector((state) => state?.auth?.data)
+    console.log(
+        'state', state
+    )
     async function handleClick() {
         dispatch(deleteCommnet("hello"))
     }
@@ -40,12 +44,15 @@ function CommentCom({ data }) {
                     <h3 className=" text-yellow-400 capitalize font-semibold italic">{data?.studentName}</h3>
                     <h1>{data?.comment}</h1>
                     <p className=' flex items-end justify-end'>{data.date} </p>
-                    <div className='hidden group-hover:block bg-yellow-400 py-2 px-5 mb-2 rounded-lg hover:bg-yellow-500 transition-all ease-in-out duration-300 text-black w-fit place-self-center'>
-                        <BsTrash
-                            onClick={handleClick}
-                            className=' hover:text-red-500 transition-all ease-in-out duration-300 text-2xl'
-                        />
-                    </div>
+                    {
+                        user?.role == 'Admin' &&
+                        < div className='hidden group-hover:block bg-yellow-400 py-2 px-5 mb-2 rounded-lg hover:bg-yellow-500 transition-all ease-in-out duration-300 text-black w-fit place-self-center'>
+                            <BsTrash
+                                onClick={handleClick}
+                                className=' hover:text-red-500 transition-all ease-in-out duration-300 text-2xl'
+                            />
+                        </div>
+                    }
                 </div>
             </div >
         </>
