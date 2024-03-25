@@ -12,6 +12,7 @@ const initialState = {
 
 
 export const createAccount = createAsyncThunk("/signup", async (data) => {
+
     try {
         const res = axiosInstance.post("/auth/register", data);
         toast.promise(res, {
@@ -29,6 +30,7 @@ export const createAccount = createAsyncThunk("/signup", async (data) => {
 })
 
 export const login = createAsyncThunk("/login", async (data) => {
+    console.log(data)
     try {
         console.log(data)
         const res = axiosInstance.post("/auth/login", data);

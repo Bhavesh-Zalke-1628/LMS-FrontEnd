@@ -44,8 +44,6 @@ function HomeLayout({ children }) {
             {loading ? <Preloader /> :
 
                 <div className="min-h-[90vh]">
-
-
                     <div className="drawer absolute left-0 z-50 w-fit">
                         <input className="drawer-toggle" id="my-drawer" type="checkbox" />
                         <div className="drawer-content">
@@ -103,16 +101,7 @@ function HomeLayout({ children }) {
                                 )}
 
                                 {isLoggedIn && (
-                                    // <li className='absolute bottom-4 w-[90%]'>
-                                    //     <div className=' w-full flex items-center justify-center'>
-                                    //         <button className=' btn-primary px-2 py-1 font-semibold rounded-md w-full'>
-                                    //             <Link to='/user/profile'>Profile</Link>
-                                    //         </button>
-                                    //         <button className=' btn-secondary px-2 py-1 font-semibold rounded-md w-full'>
-                                    //             <Link onClick={handleLogout}>Logout</Link>
-                                    //         </button>
-                                    //     </div>
-                                    // </li>
+
                                     <li className='absolute bottom-4 w-[90%]  shadow-[0_0_5px_black]'>
                                         <div className=' w-full flex items-center justify-center gap-2'>
                                             <button className=' px-2 py-2 font-semibold rounded-md w-fulltext-white bg-yellow-500 hover:bg-yellow-600 text-white transition-all ease-in-out duration-300 w-full'>

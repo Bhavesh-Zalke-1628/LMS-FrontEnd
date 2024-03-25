@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-hot-toast";
 import axiosInstance from "../../Helpers/axiosInstance";
+import { json } from "react-router-dom";
 const initialState = {
-    courseData: []
+    courseData: [],
+    numberOfCourses: localStorage.getItem('numberOfCourses')
 }
 export const getAllCourses = createAsyncThunk("/course/get", async () => {
     try {
@@ -20,7 +22,7 @@ export const getAllCourses = createAsyncThunk("/course/get", async () => {
 
 export const deleteCorce = createAsyncThunk("/course/delete", async (id) => {
     try {
-        const response =await axiosInstance.delete(`/cource/${id}`);
+        const response = await axiosInstance.delete(`/cource/${id}`);
         console.log(response)
         toast.promise(response, {
             loading: " deleting course...",
@@ -59,7 +61,9 @@ const courseSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getAllCourses.fulfilled, (state, action) => {
+                console.log("number of courses", action.payload.length)
                 if (action.payload) {
+                    state.numberOfCourses = action?.payload?.length
                     state.courseData = [...action.payload];
                 }
             })
