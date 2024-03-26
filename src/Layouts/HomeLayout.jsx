@@ -11,7 +11,6 @@ function HomeLayout({ children }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
-
     // for checking if user is logged in 
     const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn)
 
@@ -99,9 +98,7 @@ function HomeLayout({ children }) {
                                         </div>
                                     </li>
                                 )}
-
                                 {isLoggedIn && (
-
                                     <li className='absolute bottom-4 w-[90%]  shadow-[0_0_5px_black]'>
                                         <div className=' w-full flex items-center justify-center gap-2'>
                                             <button className=' px-2 py-2 font-semibold rounded-md w-fulltext-white bg-yellow-500 hover:bg-yellow-600 text-white transition-all ease-in-out duration-300 w-full'>

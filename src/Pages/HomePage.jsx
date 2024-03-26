@@ -15,19 +15,20 @@ function HomePage() {
     const { data } = useSelector((state) => {
         return state?.auth
     })
+    console.log(data)
     const courseData = useSelector((state) => state?.courses)
     console.log(courseData)
     const numberOfCourses = courseData.numberOfCourses
     const numberOfCoursesLocal = localStorage.getItem('numberOfCourses')
     console.log(numberOfCoursesLocal)
-    if (courseData.courseData.length > numberOfCoursesLocal) {
-        if (numberOfCoursesLocal >= 0) {
-            setCounter(0)
-        } else {
-            setCounter(numberOfCourses - numberOfCoursesLocal)
-            localStorage.setItem('numberOfCourses', numberOfCourses)
-        }
-    }
+    // if (courseData.courseData.length > numberOfCoursesLocal) {
+    //     if (numberOfCoursesLocal >= 0) {
+    //         setCounte    r(0)
+    //     } else {
+    //         setCounter(numberOfCourses - numberOfCoursesLocal)
+    //         localStorage.setItem('numberOfCourses', numberOfCourses)
+    //     }
+    // }
 
     console.log(data)
     useEffect(() => {
@@ -37,6 +38,7 @@ function HomePage() {
         <>
             <HomeLayout>
                 <div className=' h-[90vh] flex flex-col items-end '>
+
                     {/* notification div */}
                     <div>
                         {

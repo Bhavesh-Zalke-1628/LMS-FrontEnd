@@ -29,11 +29,30 @@ export const createAccount = createAsyncThunk("/signup", async (data) => {
     }
 })
 
-export const login = createAsyncThunk("/login", async (data) => {
+export const loginAdmin = createAsyncThunk("/login", async (data) => {
     console.log(data)
     try {
         console.log(data)
-        const res = axiosInstance.post("/auth/login", data);
+        const res = axiosInstance.post("/auth/login/admin", data);
+        toast.promise(res, {
+            loading: "Wait! Authentication in process",
+            success: (data) => {
+                return data?.data?.msg;
+            },
+            error: "Failed to login"
+        });
+        return (await res).data;
+    } catch (error) {
+        toast.error(error?.response?.data);
+    }
+})
+
+
+export const loginUser = createAsyncThunk("/login", async (data) => {
+    console.log(data)
+    try {
+        console.log(data)
+        const res = axiosInstance.post("/auth/login/user", data);
         toast.promise(res, {
             loading: "Wait! Authentication in process",
             success: (data) => {
@@ -101,7 +120,7 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(login.fulfilled, (state, action) => {
+            .addCase(loginUser.fulfilled, (state, action) => {
                 localStorage.setItem('data', JSON.stringify(action?.payload?.user))
                 localStorage.setItem('isLoggedIn', true);
                 localStorage.setItem('role', action?.payload?.user?.role);

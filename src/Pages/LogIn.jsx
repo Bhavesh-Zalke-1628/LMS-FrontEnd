@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import HomeLayout from '../Layouts/HomeLayout';
-import { login } from '../Redux/Slices/AuthSlice';
+import { loginUser } from '../Redux/Slices/AuthSlice';
 
 function Signup() {
 
@@ -32,15 +32,16 @@ function Signup() {
         }
 
         // dispatch create account action
-        const response = await dispatch(login(loginData));
+        const response = await dispatch(loginUser(loginData));
         console.log(response)
         if (response?.payload?.success)
-            navigate(-1);
+            navigate('/user/profile');
 
         setLoginData({
             email: "",
             password: "",
         });
+
     }
 
     return (
