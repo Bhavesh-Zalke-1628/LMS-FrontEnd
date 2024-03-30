@@ -20,21 +20,7 @@ export const addComment = createAsyncThunk('/add/comment', async (data) => {
     return (await response).data.cource.lectures;
 })
 
-export const deleteCommnet = createAsyncThunk('/delete/commnet', async (data) => {
-    const response = await axiosInstance.delete(`/cource/delete-comment`)
-    console.log(response)
-    console.log(data)
-    try {
-        toast.promise(response, {
-            loading: "Deleting comment",
-            success: "Comment deleted successfully",
-            error: "Failed to delete comment"
-        })
-        return (await response).data;
-    } catch (error) {
-        toast.error(error.message)
-    }
-})
+
 const commnetSlice = createSlice({
     name: "Comment",
     initialState,

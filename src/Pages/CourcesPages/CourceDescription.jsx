@@ -37,9 +37,11 @@ function CourceDescription() {
                                     }
                                 </p>
                             </div>
+                            {console.log(role)}
                             {
                                 role === "Admin" || data?.subscription?.status === "active" ? (
                                     <button
+
                                         onClick={() => navigate("/course/dispalylecture", { state: { ...state } })}
                                         className=' bg-yellow-600 w-full text-xl rounded-md font-bold py-2 px-3 hover:bg-yellow-500 transition-all ease-in-out duration-300'>
                                         Watch Lecture

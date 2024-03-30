@@ -6,11 +6,12 @@ import { IoIosNotifications } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCourses } from '../Redux/Slices/CourceSlice';
 import { RxCrossCircled } from 'react-icons/rx'
+import { BsClockHistory } from 'react-icons/bs';
 function HomePage() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(10);
     const [show, setShow] = useState(false)
     const { data } = useSelector((state) => {
         return state?.auth
@@ -19,16 +20,13 @@ function HomePage() {
     const courseData = useSelector((state) => state?.courses)
     console.log(courseData)
     const numberOfCourses = courseData.numberOfCourses
+    console.log(numberOfCourses)
     const numberOfCoursesLocal = localStorage.getItem('numberOfCourses')
     console.log(numberOfCoursesLocal)
-    // if (courseData.courseData.length > numberOfCoursesLocal) {
-    //     if (numberOfCoursesLocal >= 0) {
-    //         setCounte    r(0)
-    //     } else {
-    //         setCounter(numberOfCourses - numberOfCoursesLocal)
-    //         localStorage.setItem('numberOfCourses', numberOfCourses)
-    //     }
-    // }
+    if (courseData.courseData.length > numberOfCoursesLocal) {
+
+        console.log('gulugulu')
+    }
 
     console.log(data)
     useEffect(() => {
