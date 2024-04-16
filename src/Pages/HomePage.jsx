@@ -11,24 +11,22 @@ function HomePage() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [counter, setCounter] = useState(10);
+    const [counter, setCounter] = useState(0);
     const [show, setShow] = useState(false)
     const { data } = useSelector((state) => {
         return state?.auth
     })
     console.log(data)
     const courseData = useSelector((state) => state?.courses)
-    console.log(courseData)
+    console.log(courseData.courseData)
     const numberOfCourses = courseData.numberOfCourses
     console.log(numberOfCourses)
     const numberOfCoursesLocal = localStorage.getItem('numberOfCourses')
     console.log(numberOfCoursesLocal)
+
     if (courseData.courseData.length > numberOfCoursesLocal) {
-
-        console.log('gulugulu')
+        console.log("hello")
     }
-
-    console.log(data)
     useEffect(() => {
         dispatch(getAllCourses())
     }, []);
@@ -46,6 +44,9 @@ function HomePage() {
                                     {
                                         localStorage.setItem('numberOfCourses', 0)
                                     }
+                                    <p className=' text-white text-2xl font-semibold'>
+                                        hello
+                                    </p>
                                 </div>
                                 <div>
                                     <RxCrossCircled

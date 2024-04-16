@@ -4,12 +4,12 @@ import { RxCrossCircled } from 'react-icons/rx'
 
 function BigImg({ data }) {
     return (
-        <div className=' absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-10 flex items-center justify-center'>
+        <div className=' absolute top-0 px-2 py-4 left-0 w-full h-full bg-black bg-opacity-50 z-10 flex items-center justify-center'>
             <div className=' w-[50%] h-3/6 rounded-lg shadow-[0_0_10px_black] flex flex-col items-center justify-center'>
                 <img
                     src={data?.photo}
                     alt="profile img"
-                    className=' w-full h-full rounded-2xl px-2 py-3 hover:rotate-2'
+                    className=' w-[50%] h-full rounded-full  px-2 py-3 hover:rotate-2 transition-all ease-in-out duration-300  '
                 />
                 <h1 className=' capitalize text-yellow-400 italic'>
                     {data?.studentName}

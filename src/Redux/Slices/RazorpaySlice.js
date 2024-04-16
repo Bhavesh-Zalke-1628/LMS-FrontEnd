@@ -58,7 +58,7 @@ export const getPaymentRecord = createAsyncThunk(
             const response = await axios.get('http://localhost:5000/api/payment?count=100');
             console.log(response);
             toast.promise(response, {
-                loading: "Getting the payment records",
+                // loading: "Getting the payment records",
                 success: (data) => {
                     return data?.data?.msg;
                 },

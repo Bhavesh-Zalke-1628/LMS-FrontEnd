@@ -61,7 +61,7 @@ const courseSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getAllCourses.fulfilled, (state, action) => {
-                // console.log("number of courses", action.payload.length)
+                console.log("number of courses", action.payload.length)
                 if (action.payload) {
                     state.numberOfCourses = action?.payload?.length
                     state.courseData = [...action.payload];

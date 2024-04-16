@@ -71,7 +71,7 @@ function AdminDashboard() {
             async () => {
                 await dispatch(getAllCourses());
                 await dispatch(getStatData());
-                await dispatch(getPaymentRecord())
+                // await dispatch(getPaymentRecord())
             }
         )()
     }, [])

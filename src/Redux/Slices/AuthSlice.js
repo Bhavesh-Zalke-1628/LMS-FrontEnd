@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 import axiosInstance from '../../Helpers/axiosInstance.js'
-import { json } from "react-router-dom";
 
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
@@ -115,7 +114,7 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
 
 
 const authSlice = createSlice({
-    name: 'auth',
+    name: ' auth',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
