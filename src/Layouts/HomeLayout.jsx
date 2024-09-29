@@ -41,7 +41,6 @@ function HomeLayout({ children }) {
     return (
         <>
             {loading ? <Preloader /> :
-
                 <div className="min-h-[90vh]">
                     <div className="drawer absolute left-0 z-50 w-fit">
                         <input className="drawer-toggle" id="my-drawer" type="checkbox" />
@@ -103,7 +102,6 @@ function HomeLayout({ children }) {
                                         <div className=' w-full flex items-center justify-center gap-2'>
                                             <button className=' px-2 py-2 font-semibold rounded-md w-fulltext-white bg-yellow-500 hover:bg-yellow-600 text-white transition-all ease-in-out duration-300 w-full'>
                                                 <Link to='/user/profile'>Profile</Link>
-
                                             </button>
                                             <button className='px-2 py-1.5 font-semibold rounded-md w-full border-2 border-yellow-500 hover:bg-red-600 hover:border-none hover:text-white transition-all ease-in-out duration-300'>
                                                 <Link onClick={handleLogout}>Logout</Link>

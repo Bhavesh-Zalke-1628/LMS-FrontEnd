@@ -25,6 +25,7 @@ function Signup() {
     }
     console.log(loginData)
     async function onLogin(event) {
+
         event.preventDefault();
         if (!loginData.email || !loginData.password) {
             toast.error("Please fill all the details");
@@ -36,6 +37,7 @@ function Signup() {
         console.log(response)
         if (response?.payload?.success)
             navigate('/user/profile');
+
 
         setLoginData({
             email: "",

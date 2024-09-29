@@ -5,13 +5,12 @@ import axiosInstance from '../../Helpers/axiosInstance.js'
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: JSON.parse(localStorage.getItem('data')) || {}
+    data: (localStorage.getItem('data')) || {}
 }
 
 
 
 export const createAccount = createAsyncThunk("/signup", async (data) => {
-
     try {
         const res = axiosInstance.post("/auth/register", data);
         toast.promise(res, {
@@ -146,5 +145,5 @@ const authSlice = createSlice({
     }
 })
 
-// export const { } = authSlice.actions;
+
 export default authSlice.reducer;

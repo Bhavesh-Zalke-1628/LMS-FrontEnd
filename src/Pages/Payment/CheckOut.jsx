@@ -13,6 +13,7 @@ function Checkout() {
     const navigate = useNavigate();
     const razorpayKey = useSelector((state) => state?.razorpay?.key);
     const subscription_id = useSelector((state) => state?.razorpay?.subscription_id);
+
     const paymentDetails = {
         razorpay_payment_id: "",
         razorpay_subscription_id: "",

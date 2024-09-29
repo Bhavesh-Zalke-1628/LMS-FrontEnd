@@ -58,7 +58,6 @@ function Addlecture() {
                 videoSrc: ""
             })
         }
-        // navigate('/course/dispalylecture')
         navigate('/course/dispalylecture')
     }
 

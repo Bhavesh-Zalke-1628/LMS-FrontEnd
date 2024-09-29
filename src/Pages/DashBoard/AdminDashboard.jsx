@@ -63,7 +63,6 @@ function AdminDashboard() {
                 await dispatch(getAllCourses())
             }
         }
-
     }
 
     useEffect(() => {

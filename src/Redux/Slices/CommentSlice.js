@@ -7,6 +7,7 @@ const initialState = {
 }
 
 
+
 export const addComment = createAsyncThunk('/add/comment', async (data) => {
 
     const response = await axios.post(`http://localhost:5000/api/cource/${data[0][0]}/comment/${data[0][1]}`, data[1])

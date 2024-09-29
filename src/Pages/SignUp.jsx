@@ -13,8 +13,6 @@ function Signup() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
-
     const [previewImage, setPreviewImage] = useState("");
 
     const [signupData, setSignupData] = useState({
@@ -105,7 +103,7 @@ function Signup() {
                         {previewImage ? (
                             <img className="w-24 h-24 rounded-full m-auto" src={previewImage} />
                         ) : (
-                            <BsPersonCircle className='w-20 h-20 rounded-full m-auto text-white' />
+                            <BsPersonCircle className='w-20 h-20 rounded-full m-auto text' />
                         )}
                     </label>
                     <input
